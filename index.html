@@ -13,15 +13,16 @@
   <style>
     /* ── CSS custom properties ── */
     :root {
-      --forest:      #1c3a2e;
-      --forest-mid:  #274d3d;
-      --off-white:   #fafaf7;
-      --charcoal:    #1f2d25;
-      --secondary:   #587063;
-      --accent:      #c45e2a;   /* burnt sienna — load-bearing, used precisely */
-      --sage:        #8aab94;
-      --sage-bg:     rgba(138, 171, 148, 0.13);
-      --rule:        rgba(31, 45, 37, 0.11);
+      --color-paper:        #FAF4E4;
+      --color-deep-blue:    #2C6A99;
+      --color-body:         #0F1B2A;
+      --color-secondary:    #3E5C6E;
+      --color-primary:      #4D9BD2;   /* non-text: hover fills, decorative */
+      --color-primary-text: #1870B4;   /* links, section markers — text-safe (4.8:1 on paper) */
+      --color-support:      #37997F;   /* timeline dots, pull-quote rule, recognition markers */
+      --color-accent:       #FFC904;   /* focus rings only */
+      --color-chip-bg:      rgba(44, 106, 153, 0.07);
+      --color-rule:         rgba(44, 106, 153, 0.12);
 
       --nav-w:       220px;
       --content-max: 680px;
@@ -30,8 +31,6 @@
 
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── Reduced-motion handled in Commit 2 ── */
 
     /* ── Base ── */
     html {
@@ -43,8 +42,8 @@
       font-family: 'DM Sans', system-ui, sans-serif;
       font-size: 1rem;
       line-height: 1.7;
-      color: var(--charcoal);
-      background: var(--off-white);
+      color: var(--color-body);
+      background: var(--color-paper);
     }
 
     /* ── Skip link ── */
@@ -54,7 +53,7 @@
       left: 1rem;
       z-index: 9999;
       padding: 0.5rem 1rem;
-      background: var(--accent);
+      background: var(--color-primary-text);
       color: #fff;
       font-family: 'Space Mono', monospace;
       font-size: 0.75rem;
@@ -64,10 +63,11 @@
     }
     .skip-link:focus { top: 0; }
 
-    /* ── Focus rings — full treatment in Commit 2 ── */
+    /* ── Focus rings: yellow signal + dark halo for contrast on any bg ── */
     :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
     }
 
     /* ═══════════════════════════════════════════════
@@ -79,7 +79,7 @@
       left: 0;
       width: var(--nav-w);
       height: 100vh;
-      background: var(--forest);
+      background: var(--color-deep-blue);
       display: flex;
       flex-direction: column;
       padding: 2.75rem 1.5rem 2rem 1.75rem;
@@ -90,18 +90,18 @@
     .sidenav-monogram {
       font-family: 'DM Serif Display', serif;
       font-size: 1.85rem;
-      color: var(--off-white);
+      color: var(--color-paper);
       line-height: 1;
       letter-spacing: -0.01em;
       margin-bottom: 0.2rem;
     }
 
     .sidenav-role {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--sage);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(250, 244, 228, 0.90);
       text-transform: uppercase;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.10em;
       line-height: 1.5;
       margin-bottom: 2.75rem;
     }
@@ -115,11 +115,11 @@
 
     #sidenav ul a {
       display: block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.07em;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(250, 250, 247, 0.5);
+      color: rgba(250, 244, 228, 0.90);
       text-decoration: none;
       padding: 0.4rem 0.5rem;
       border-left: 2px solid transparent;
@@ -127,36 +127,36 @@
     }
 
     #sidenav ul a:hover {
-      color: var(--off-white);
-      border-left-color: var(--sage);
+      color: var(--color-paper);
+      border-left-color: var(--color-paper);
     }
 
     #sidenav ul a.active {
-      color: var(--off-white);
-      border-left-color: var(--accent);  /* accent: active state only */
+      color: var(--color-paper);
+      border-left-color: var(--color-paper);
     }
 
     .sidenav-contact {
       margin-top: 2rem;
       padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
       font-style: normal;
     }
 
     .sidenav-contact a {
       display: block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: rgba(250, 250, 247, 0.38);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(250, 244, 228, 0.90);
       text-decoration: none;
       line-height: 2;
       word-break: break-all;
       transition: color 0.18s;
     }
 
-    .sidenav-contact a:hover { color: var(--sage); }
+    .sidenav-contact a:hover { color: var(--color-paper); }
 
-    /* ── Mobile nav toggle (structure only; Commit 2 completes responsive) ── */
+    /* ── Mobile nav toggle ── */
     .mobile-nav-toggle {
       display: none;
     }
@@ -170,8 +170,8 @@
 
     footer {
       margin-left: var(--nav-w);
-      background: var(--forest);
-      color: rgba(250, 250, 247, 0.45);
+      background: var(--color-deep-blue);
+      color: rgba(250, 244, 228, 0.90);
       padding: 2rem 4rem 2rem 4.5rem;
       font-family: 'Space Mono', monospace;
       font-size: 0.62rem;
@@ -180,10 +180,10 @@
     }
 
     footer a {
-      color: var(--sage);
+      color: var(--color-paper);
       text-decoration: none;
     }
-    footer a:hover { color: var(--off-white); }
+    footer a:hover { color: rgba(250, 244, 228, 0.70); }
 
     /* ═══════════════════════════════════════════════
        SECTION BASE
@@ -191,7 +191,7 @@
     main > header,
     main > section {
       padding: var(--section-pad);
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--color-rule);
       max-width: calc(var(--content-max) + 9rem);
     }
 
@@ -207,7 +207,7 @@
       font-size: 0.62rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: var(--sage);
+      color: var(--color-secondary);
       margin-bottom: 0.6rem;
     }
 
@@ -229,7 +229,7 @@
       font-size: clamp(2.6rem, 4.5vw, 3.8rem);
       line-height: 1.04;
       letter-spacing: -0.015em;
-      color: var(--charcoal);
+      color: var(--color-body);
     }
 
     h2 {
@@ -237,7 +237,7 @@
       font-weight: 400;
       font-size: clamp(1.4rem, 2.2vw, 1.85rem);
       line-height: 1.15;
-      color: var(--charcoal);
+      color: var(--color-body);
     }
 
     h3 {
@@ -245,7 +245,7 @@
       font-weight: 400;
       font-size: 1.2rem;
       line-height: 1.2;
-      color: var(--charcoal);
+      color: var(--color-body);
     }
 
     h4 {
@@ -254,7 +254,7 @@
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--secondary);
+      color: var(--color-secondary);
       margin-bottom: 0.65rem;
       margin-top: 1.75rem;
     }
@@ -268,7 +268,7 @@
     #hero {
       padding-top: 5.5rem;
       padding-bottom: 5rem;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--color-rule);
     }
 
     #hero h1 {
@@ -279,14 +279,14 @@
       font-family: 'DM Serif Display', serif;
       font-style: italic;
       font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-      color: var(--secondary);
+      color: var(--color-secondary);
       margin-bottom: 1.5rem;
     }
 
     .hero-tagline {
       font-size: clamp(0.95rem, 1.5vw, 1.05rem);
       font-weight: 300;
-      color: var(--charcoal);
+      color: var(--color-body);
       max-width: 54ch;
       line-height: 1.75;
       margin-bottom: 0;
@@ -300,18 +300,18 @@
     }
 
     #about > p:first-of-type {
-      color: var(--secondary);
+      color: var(--color-secondary);
       font-size: 0.95rem;
       max-width: 60ch;
       line-height: 1.75;
     }
 
-    /* The skate park pull-quote — real visual treatment */
+    /* The skate park pull-quote */
     .origin-pull {
       margin: 2rem 0;
       padding: 1.5rem 1.75rem;
-      border-left: 3px solid var(--accent);   /* accent: structural, not decorative */
-      background: rgba(28, 58, 46, 0.04);
+      border-left: 3px solid var(--color-support);
+      background: rgba(44, 106, 153, 0.04);
     }
 
     .origin-pull p {
@@ -319,20 +319,20 @@
       font-style: italic;
       font-size: clamp(1rem, 1.6vw, 1.1rem);
       line-height: 1.7;
-      color: var(--charcoal);
+      color: var(--color-body);
       margin-bottom: 0;
       max-width: 58ch;
     }
 
     #about > p:last-of-type {
       font-size: 0.95rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       max-width: 60ch;
       line-height: 1.75;
     }
 
     /* ═══════════════════════════════════════════════
-       CAPABILITIES
+       CORE SKILLS
     ═══════════════════════════════════════════════ */
     #capabilities h2 { margin-bottom: 1.5rem; }
 
@@ -345,13 +345,13 @@
 
     .capabilities-list li {
       padding: 0.45rem 0.85rem;
-      background: var(--sage-bg);
-      border: 1px solid rgba(138, 171, 148, 0.45);
+      background: var(--color-chip-bg);
+      border: 1px solid rgba(44, 106, 153, 0.25);
       border-radius: 2px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.66rem;
-      letter-spacing: 0.04em;
-      color: var(--forest);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--color-body);
       line-height: 1.4;
     }
 
@@ -366,14 +366,13 @@
       gap: 3.5rem;
     }
 
-    /* Section wraps all articles */
     #experience > article {
       position: relative;
       padding-left: 1.5rem;
-      border-left: 2px solid var(--rule);
+      border-left: 2px solid var(--color-rule);
     }
 
-    /* Timeline dot — accent, positioned precisely */
+    /* Timeline dot */
     #experience > article::before {
       content: '';
       position: absolute;
@@ -382,8 +381,8 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 3px var(--off-white), 0 0 0 4px var(--accent);
+      background: var(--color-support);
+      box-shadow: 0 0 0 3px var(--color-paper), 0 0 0 4px var(--color-support);
     }
 
     .exp-header {
@@ -397,7 +396,7 @@
     .exp-location {
       font-family: 'Space Mono', monospace;
       font-size: 0.62rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 0.2rem;
@@ -408,7 +407,7 @@
     .exp-dates-end {
       font-family: 'Space Mono', monospace;
       font-size: 0.65rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       letter-spacing: 0.04em;
     }
 
@@ -419,13 +418,13 @@
     .exp-title-functional {
       font-size: 0.95rem;
       font-weight: 500;
-      color: var(--charcoal);
+      color: var(--color-body);
       margin-bottom: 0.25rem;
     }
 
     .exp-body p {
       font-size: 0.93rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       max-width: 62ch;
       line-height: 1.7;
     }
@@ -440,7 +439,7 @@
       position: relative;
       padding-left: 1.1rem;
       font-size: 0.88rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       line-height: 1.6;
       margin-bottom: 0.45rem;
       max-width: 62ch;
@@ -450,17 +449,17 @@
       content: '—';
       position: absolute;
       left: 0;
-      color: var(--sage);
+      color: var(--color-secondary);
       font-size: 0.8rem;
     }
 
-    /* Recognition items: burnt sienna marker, no extra decoration */
+    /* Recognition items */
     .recognition-item {
-      color: var(--charcoal) !important;
+      color: var(--color-body) !important;
     }
 
     .recognition-item::before {
-      color: var(--accent) !important;  /* accent: recognition marker only */
+      color: var(--color-support) !important;
     }
 
     /* ═══════════════════════════════════════════════
@@ -470,7 +469,7 @@
 
     .earlier-intro {
       font-size: 0.88rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       font-style: italic;
       max-width: 58ch;
       margin-bottom: 1.75rem;
@@ -488,29 +487,29 @@
       gap: 1.5rem;
       align-items: start;
       padding: 0.9rem 0;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid var(--color-rule);
     }
 
     .earlier-item:last-child {
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--color-rule);
     }
 
     .earlier-role {
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--charcoal);
+      color: var(--color-body);
       margin-bottom: 0.15rem;
     }
 
     .earlier-org {
       font-size: 0.83rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       margin-bottom: 0.3rem;
     }
 
     .earlier-origin-note {
       font-size: 0.8rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       font-style: italic;
       line-height: 1.6;
       max-width: 50ch;
@@ -520,7 +519,7 @@
     .earlier-dates {
       font-family: 'Space Mono', monospace;
       font-size: 0.62rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       letter-spacing: 0.04em;
       white-space: nowrap;
       text-align: right;
@@ -544,20 +543,20 @@
 
     .edu-degree-item {
       padding-left: 1rem;
-      border-left: 2px solid var(--rule);
+      border-left: 2px solid var(--color-rule);
     }
 
     .edu-degree-item dt {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.92rem;
       font-weight: 500;
-      color: var(--charcoal);
+      color: var(--color-body);
       margin-bottom: 0.2rem;
     }
 
     .edu-degree-item dd {
       font-size: 0.83rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       margin-left: 0;
       line-height: 1.6;
     }
@@ -566,7 +565,7 @@
       font-family: 'Space Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.05em;
-      color: var(--secondary);
+      color: var(--color-secondary);
       text-transform: uppercase;
       margin-bottom: 0.35rem;
     }
@@ -575,7 +574,7 @@
       font-style: italic;
       font-size: 0.85rem;
       max-width: 55ch;
-      color: var(--secondary);
+      color: var(--color-secondary);
     }
 
     /* ═══════════════════════════════════════════════
@@ -592,13 +591,13 @@
 
     .cert-list li {
       padding: 0.45rem 0.85rem;
-      background: var(--sage-bg);
-      border: 1px solid rgba(138, 171, 148, 0.45);
+      background: var(--color-chip-bg);
+      border: 1px solid rgba(44, 106, 153, 0.25);
       border-radius: 2px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.04em;
-      color: var(--forest);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--color-body);
     }
 
     /* ═══════════════════════════════════════════════
@@ -611,7 +610,7 @@
 
     #contact > p {
       font-size: 0.93rem;
-      color: var(--secondary);
+      color: var(--color-secondary);
       max-width: 44ch;
       margin-bottom: 1.75rem;
       line-height: 1.7;
@@ -627,17 +626,17 @@
     .contact-links a {
       font-family: 'Space Mono', monospace;
       font-size: 0.78rem;
-      color: var(--accent);               /* accent: contact CTAs */
+      color: var(--color-primary-text);
       text-decoration: none;
-      border-bottom: 1px solid rgba(196, 94, 42, 0.35);
+      border-bottom: 1px solid rgba(24, 112, 180, 0.35);
       padding-bottom: 0.1rem;
       letter-spacing: 0.03em;
       transition: color 0.18s, border-color 0.18s;
     }
 
     .contact-links a:hover {
-      color: var(--forest);
-      border-bottom-color: var(--forest);
+      color: var(--color-deep-blue);
+      border-bottom-color: var(--color-deep-blue);
     }
 
     /* ═══════════════════════════════════════════════
@@ -674,7 +673,7 @@
         width: 40px;
         height: 40px;
         padding: 0.55rem;
-        background: var(--forest);
+        background: var(--color-deep-blue);
         border: none;
         border-radius: 3px;
         cursor: pointer;
@@ -683,7 +682,7 @@
       .mobile-nav-toggle span {
         display: block;
         height: 2px;
-        background: var(--off-white);
+        background: var(--color-paper);
         border-radius: 1px;
         transition: transform 0.2s, opacity 0.2s;
       }
@@ -719,7 +718,7 @@
       :root { --section-pad: 2.5rem 1.25rem 2.25rem; }
 
       .capabilities-list li,
-      .cert-list li { font-size: 0.6rem; }
+      .cert-list li { font-size: 0.875rem; }
 
       .contact-links { flex-direction: column; gap: 0.75rem; }
     }
@@ -740,43 +739,45 @@
     }
 
     /* ═══════════════════════════════════════════════
-       FOCUS STATES — visible, not default-browser
+       FOCUS STATES
     ═══════════════════════════════════════════════ */
-
-    /* Override generic :focus-visible for nav links specifically */
     #sidenav ul a:focus-visible {
-      outline: 2px solid var(--sage);
+      outline: 3px solid var(--color-accent);
       outline-offset: 2px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
       border-radius: 2px;
     }
 
     .contact-links a:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 3px solid var(--color-accent);
       outline-offset: 3px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
       border-radius: 2px;
     }
 
     .mobile-nav-toggle:focus-visible {
-      outline: 2px solid var(--sage);
+      outline: 3px solid var(--color-accent);
       outline-offset: 3px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
     }
 
     .skip-link:focus {
-      outline: 2px solid #fff;
+      outline: 3px solid #FFC904;
       outline-offset: 2px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
     }
 
-    /* Location label in sidenav — matches contact link style, non-interactive */
+    /* Location label in sidenav */
     .sidenav-location {
       display: block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: rgba(250, 250, 247, 0.38);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(250, 244, 228, 0.90);
       line-height: 2;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
 
-    /* Item 14: breathing room between experience entries */
+    /* Breathing room between experience entries */
     #experience > article + article {
       margin-top: 1.75rem;
     }
