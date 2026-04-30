@@ -310,7 +310,7 @@
 
     /* The skate park pull-quote */
     .origin-pull {
-      margin: 2rem 0;
+      margin: 3rem 0;
       padding: 1.5rem 1.75rem;
       border-left: 3px solid var(--color-deep-blue);
       background: rgba(44, 106, 153, 0.04);
@@ -603,16 +603,23 @@
     }
 
     /* ═══════════════════════════════════════════════
-       CONTACT
+       CONTACT — colored closing, mirrors sidebar
     ═══════════════════════════════════════════════ */
+    #contact {
+      background: var(--color-deep-blue);
+      padding: 6rem 4rem 5rem 4.5rem;
+      max-width: none;
+    }
+
     #contact h2 {
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       margin-bottom: 0.75rem;
+      color: var(--color-paper);
     }
 
     #contact > p {
       font-size: 0.93rem;
-      color: var(--color-secondary);
+      color: rgba(250, 244, 228, 0.90);
       max-width: 44ch;
       margin-bottom: 1.75rem;
       line-height: 1.7;
@@ -628,17 +635,16 @@
     .contact-links a {
       font-family: 'Space Mono', monospace;
       font-size: 0.78rem;
-      color: var(--color-primary-text);
+      color: rgba(250, 244, 228, 0.95);
       text-decoration: none;
-      border-bottom: 1px solid rgba(24, 112, 180, 0.35);
+      border-bottom: 1px solid rgba(250, 244, 228, 0.40);
       padding-bottom: 0.1rem;
       letter-spacing: 0.03em;
-      transition: color 0.18s, border-color 0.18s;
+      transition: border-color 0.18s;
     }
 
     .contact-links a:hover {
-      color: var(--color-deep-blue);
-      border-bottom-color: var(--color-deep-blue);
+      border-bottom-color: var(--color-accent);
     }
 
     /* ═══════════════════════════════════════════════
@@ -710,6 +716,10 @@
       }
 
       .earlier-dates { text-align: left; }
+
+      #contact {
+        padding: 4rem 1.5rem 3.5rem;
+      }
     }
 
     @media (max-width: 480px) {
