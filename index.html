@@ -5,11 +5,388 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kim Hannush — SEO &amp; Digital Strategy Lead. Organic search strategist and digital systems thinker working at the intersection of institutional visibility, content governance, and emerging search.">
   <title>Kim Hannush</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── CSS custom properties ── */
+    :root {
+      --forest:      #1c3a2e;
+      --forest-mid:  #274d3d;
+      --off-white:   #fafaf7;
+      --charcoal:    #1f2d25;
+      --secondary:   #587063;
+      --accent:      #c45e2a;   /* burnt sienna — load-bearing, used precisely */
+      --sage:        #8aab94;
+      --sage-bg:     rgba(138, 171, 148, 0.13);
+      --rule:        rgba(31, 45, 37, 0.11);
+
+      --nav-w:       220px;
+      --content-max: 680px;
+      --section-pad: 5rem 4rem 4.5rem 4.5rem;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Reduced-motion handled in Commit 2 ── */
+
+    /* ── Base ── */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--charcoal);
+      background: var(--off-white);
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 9999;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-radius: 0 0 3px 3px;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Focus rings — full treatment in Commit 2 ── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       STRUCTURAL LEFT-GUTTER NAV
+    ═══════════════════════════════════════════════ */
+    #sidenav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      background: var(--forest);
+      display: flex;
+      flex-direction: column;
+      padding: 2.75rem 1.5rem 2rem 1.75rem;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .sidenav-monogram {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.85rem;
+      color: var(--off-white);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+
+    .sidenav-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--sage);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      line-height: 1.5;
+      margin-bottom: 2.75rem;
+    }
+
+    #sidenav ul {
+      list-style: none;
+      flex: 1;
+    }
+
+    #sidenav ul li + li { margin-top: 0.05rem; }
+
+    #sidenav ul a {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.5);
+      text-decoration: none;
+      padding: 0.4rem 0.5rem;
+      border-left: 2px solid transparent;
+      transition: color 0.18s, border-color 0.18s;
+    }
+
+    #sidenav ul a:hover {
+      color: var(--off-white);
+      border-left-color: var(--sage);
+    }
+
+    #sidenav ul a.active {
+      color: var(--off-white);
+      border-left-color: var(--accent);  /* accent: active state only */
+    }
+
+    .sidenav-contact {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-style: normal;
+    }
+
+    .sidenav-contact a {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(250, 250, 247, 0.38);
+      text-decoration: none;
+      line-height: 2;
+      word-break: break-all;
+      transition: color 0.18s;
+    }
+
+    .sidenav-contact a:hover { color: var(--sage); }
+
+    /* ── Mobile nav toggle (structure only; Commit 2 completes responsive) ── */
+    .mobile-nav-toggle {
+      display: none;
+    }
+
+    /* ═══════════════════════════════════════════════
+       MAIN + FOOTER OFFSET
+    ═══════════════════════════════════════════════ */
+    main {
+      margin-left: var(--nav-w);
+    }
+
+    footer {
+      margin-left: var(--nav-w);
+      background: var(--forest);
+      color: rgba(250, 250, 247, 0.45);
+      padding: 2rem 4rem 2rem 4.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.07em;
+      line-height: 2;
+    }
+
+    footer a {
+      color: var(--sage);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--off-white); }
+
+    /* ═══════════════════════════════════════════════
+       SECTION BASE
+    ═══════════════════════════════════════════════ */
+    main > header,
+    main > section {
+      padding: var(--section-pad);
+      border-bottom: 1px solid var(--rule);
+      max-width: calc(var(--content-max) + 9rem);
+    }
+
+    main > header:last-of-type,
+    main > section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* Section label above h2 */
+    .section-label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--sage);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Visually hidden utility */
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ── Type scale ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      color: var(--charcoal);
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      line-height: 1.15;
+      color: var(--charcoal);
+    }
+
+    h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+
+    h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary);
+      margin-bottom: 0.65rem;
+      margin-top: 1.75rem;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════ */
+    #hero {
+      padding-top: 5.5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    #hero h1 {
+      margin-bottom: 1.4rem;
+    }
+
+    .title-block {
+      margin-bottom: 2rem;
+    }
+
+    .title-functional {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .title-official {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--secondary);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .tension-marker {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);   /* accent: title tension */
+      flex-shrink: 0;
+      font-size: 0;                /* hide the ● character; shape comes from CSS */
+    }
+
+    .tension-label {
+      opacity: 0.65;
+    }
+
+    .tension-note {
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      max-width: 54ch;
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-location {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════════ */
+    #about h2 {
+      margin-bottom: 1.1rem;
+    }
+
+    #about > p:first-of-type {
+      color: var(--secondary);
+      font-size: 0.95rem;
+      max-width: 60ch;
+      line-height: 1.75;
+    }
+
+    /* The skate park pull-quote — real visual treatment */
+    .origin-pull {
+      margin: 2rem 0;
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent);   /* accent: structural, not decorative */
+      background: rgba(28, 58, 46, 0.04);
+    }
+
+    .origin-pull p {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--charcoal);
+      margin-bottom: 0;
+      max-width: 58ch;
+    }
+
+    #about > p:last-of-type {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      max-width: 60ch;
+      line-height: 1.75;
+    }
+  </style>
 </head>
 
 <body>
 
   <a href="#main" class="skip-link">Skip to main content</a>
+
+  <button class="mobile-nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidenav">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
 
   <!-- ============================================================
        SITE NAVIGATION
@@ -69,7 +446,7 @@
         <p>The first SEO work I ever did was for a municipal skate park in Oviedo — two miles from UCF's campus, invisible to the students who would have loved it. I updated directory listings, built inbound links through outreach, ran social media accounts, and created content around user-generated footage, because the product was visual and the audience was online. I did guerrilla marketing at football tailgates. I manually reached out to other parks for link exchanges. I didn't know it was called SEO yet. I just knew the right people couldn't find the right place, and that felt like a solvable problem.</p>
       </blockquote>
 
-      <p>That through-line — systems, people, information, and the gaps between them — has run through every role since. It's why I now lead SEO and digital visibility across a large-scale university web ecosystem, shaping how hundreds of sites perform, connect, and get found — and why I'm paying close attention to what happens next, as AI-driven discovery and zero-click behavior rewrite the rules for how institutions maintain visibility, authority, and impact.</p>
+      <p>That through-line — systems, people, information, and the gaps between them — has run through every role since. It's why I now lead SEO and digital visibility across a large-scale university web ecosystem, shaping how hundreds of sites perform, connect, and get found — and why I'm paying close attention to what happens next, as AI-driven discovery and zero-click behavior reshape how institutions earn visibility, hold authority, and sustain impact.</p>
     </section>
 
     <!-- ── CORE CAPABILITIES ── -->
