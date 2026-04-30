@@ -19,7 +19,6 @@
       --color-secondary:    #3E5C6E;
       --color-primary:      #4D9BD2;   /* non-text: hover fills, decorative */
       --color-primary-text: #1870B4;   /* links, section markers — text-safe (4.8:1 on paper) */
-      --color-support:      #37997F;   /* timeline dots, pull-quote rule, recognition markers */
       --color-accent:       #FFC904;   /* focus rings only */
       --color-chip-bg:      rgba(44, 106, 153, 0.07);
       --color-rule:         rgba(44, 106, 153, 0.12);
@@ -87,13 +86,33 @@
       overflow-y: auto;
     }
 
+    /* Avatar wrapper — replace .sidenav-monogram span with <img class="sidenav-avatar"> to swap in photo */
+    .sidenav-avatar-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(250, 244, 228, 0.08);
+      flex-shrink: 0;
+    }
+
+    .sidenav-avatar-wrap img.sidenav-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .sidenav-monogram {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.85rem;
+      font-size: 4.25rem;
       color: var(--color-paper);
       line-height: 1;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.2rem;
+      letter-spacing: -0.02em;
     }
 
     .sidenav-role {
@@ -162,28 +181,11 @@
     }
 
     /* ═══════════════════════════════════════════════
-       MAIN + FOOTER OFFSET
+       MAIN OFFSET
     ═══════════════════════════════════════════════ */
     main {
       margin-left: var(--nav-w);
     }
-
-    footer {
-      margin-left: var(--nav-w);
-      background: var(--color-deep-blue);
-      color: rgba(250, 244, 228, 0.90);
-      padding: 2rem 4rem 2rem 4.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.07em;
-      line-height: 2;
-    }
-
-    footer a {
-      color: var(--color-paper);
-      text-decoration: none;
-    }
-    footer a:hover { color: rgba(250, 244, 228, 0.70); }
 
     /* ═══════════════════════════════════════════════
        SECTION BASE
@@ -310,7 +312,7 @@
     .origin-pull {
       margin: 2rem 0;
       padding: 1.5rem 1.75rem;
-      border-left: 3px solid var(--color-support);
+      border-left: 3px solid var(--color-deep-blue);
       background: rgba(44, 106, 153, 0.04);
     }
 
@@ -381,8 +383,8 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--color-support);
-      box-shadow: 0 0 0 3px var(--color-paper), 0 0 0 4px var(--color-support);
+      background: var(--color-deep-blue);
+      box-shadow: 0 0 0 3px var(--color-paper), 0 0 0 4px var(--color-deep-blue);
     }
 
     .exp-header {
@@ -459,7 +461,7 @@
     }
 
     .recognition-item::before {
-      color: var(--color-support) !important;
+      color: var(--color-deep-blue) !important;
     }
 
     /* ═══════════════════════════════════════════════
@@ -698,10 +700,6 @@
       }
 
       main { margin-left: 0; }
-      footer {
-        margin-left: 0;
-        padding: 2rem 1.5rem;
-      }
 
       main > header,
       main > section { max-width: 100%; }
@@ -798,8 +796,10 @@
        SITE NAVIGATION
   ============================================================ -->
   <nav id="sidenav" aria-label="Site navigation">
-    <p class="sidenav-monogram" aria-hidden="true">KH</p>
-    <p class="sidenav-role">SEO &amp; Digital Strategy</p>
+    <div class="sidenav-avatar-wrap" aria-hidden="true">
+      <span class="sidenav-monogram">KH</span>
+    </div>
+    <p class="sidenav-role">Enterprise Search &amp; Digital Strategy</p>
 
     <ul>
       <li><a href="#about">About</a></li>
@@ -835,13 +835,13 @@
     <section id="about" aria-labelledby="about-heading">
       <h2 id="about-heading">About</h2>
 
-      <p>The work is search strategy and content governance inside large institutions — understanding how information is organized, where it breaks down and how to fix it at scale. The job is reading those systems clearly and building the frameworks that make them hold.</p>
+      <p>I lead enterprise search and digital strategy at the University of Central Florida, where my work is building the content governance frameworks that keep a decentralized university web ecosystem holding together as the rules of search keep changing shape.</p>
 
       <blockquote class="origin-pull">
         <p>My first SEO work was for a municipal skate park in Oviedo — two miles from UCF, invisible to the students who would have loved it like I did. I found organic ways to get the right people to it. Two decades later, the puzzle scales but the shape doesn't change.</p>
       </blockquote>
 
-      <p>That through-line — systems, people, information and the gaps between them — has run through every role since. It's why I now govern search performance and information architecture across a large-scale university web ecosystem, shaping how hundreds of sites are organized, found and understood — and why I'm watching closely as AI-driven discovery and zero-click behavior reshape how institutions earn visibility, hold authority and sustain impact.</p>
+      <p>Right now that means leading UCF's response to AI-driven discovery — designing how institutions maintain visibility when the audience is no longer landing on their pages first, and how institutional voice stays intact when an AI summary becomes the destination.</p>
     </section>
 
     <!-- ── CORE CAPABILITIES ── -->
@@ -1069,14 +1069,6 @@
     </section>
 
   </main>
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-  <footer>
-    <p>Kim Hannush &nbsp;·&nbsp; Palm Harbor, FL</p>
-    <p>Designed in collaboration with Claude Code, 2026.</p>
-  </footer>
 
   <script>
     // Active nav highlight on scroll
