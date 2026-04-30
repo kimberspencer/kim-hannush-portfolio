@@ -272,51 +272,15 @@
     }
 
     #hero h1 {
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.6rem;
     }
 
-    .title-block {
-      margin-bottom: 2rem;
-    }
-
-    .title-functional {
+    .hero-category {
       font-family: 'DM Serif Display', serif;
       font-style: italic;
       font-size: clamp(1.05rem, 1.8vw, 1.25rem);
       color: var(--secondary);
-      margin-bottom: 0.4rem;
-    }
-
-    .title-official {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--secondary);
-      letter-spacing: 0.03em;
-      line-height: 1.5;
-      margin-bottom: 0;
-    }
-
-    .tension-marker {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);   /* accent: title tension */
-      flex-shrink: 0;
-      font-size: 0;                /* hide the ● character; shape comes from CSS */
-    }
-
-    .tension-label {
-      opacity: 0.65;
-    }
-
-    .tension-note {
-      font-style: italic;
-      opacity: 0.7;
+      margin-bottom: 1.5rem;
     }
 
     .hero-tagline {
@@ -325,15 +289,6 @@
       color: var(--charcoal);
       max-width: 54ch;
       line-height: 1.75;
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-location {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--secondary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
       margin-bottom: 0;
     }
 
@@ -466,20 +421,6 @@
       font-weight: 500;
       color: var(--charcoal);
       margin-bottom: 0.25rem;
-    }
-
-    /* Reuse hero tension styles; these targets are on article elements */
-    .exp-title-official {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--secondary);
-      letter-spacing: 0.03em;
-      line-height: 1.5;
-      margin-bottom: 0;
     }
 
     .exp-body p {
@@ -861,7 +802,7 @@
 
     <ul>
       <li><a href="#about">About</a></li>
-      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#capabilities">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#earlier">Earlier Work</a></li>
       <li><a href="#education">Education</a></li>
@@ -885,17 +826,8 @@
     <!-- ── HERO ── -->
     <header id="hero" class="section-hero">
       <h1>Kim Hannush</h1>
-
-      <div class="title-block">
-        <p class="title-functional">SEO &amp; Digital Strategy Lead</p>
-        <p class="title-official">
-          <span class="tension-marker" aria-hidden="true">&#9679;</span>
-          <span class="tension-label">Official title:</span>
-          SEO &amp; Data Analyst
-        </p>
-      </div>
-
-      <p class="hero-tagline">Organic search strategist, digital systems thinker, and the person institutions call when visibility, governance and complexity converge — and need to become a plan.</p>
+      <p class="hero-category">Enterprise Search &amp; Digital Strategy</p>
+      <p class="hero-tagline">Building the systems that keep large institutions findable.</p>
     </header>
 
     <!-- ── ABOUT ── -->
@@ -913,7 +845,7 @@
 
     <!-- ── CORE CAPABILITIES ── -->
     <section id="capabilities" aria-labelledby="capabilities-heading">
-      <h2 id="capabilities-heading">Core Capabilities</h2>
+      <h2 id="capabilities-heading">Core Skills</h2>
 
       <ul class="capabilities-list">
         <li>Digital Strategy &amp; Governance</li>
@@ -942,11 +874,6 @@
 
         <div class="exp-title-block">
           <p class="exp-title-functional">SEO &amp; Digital Strategy Lead</p>
-          <p class="exp-title-official">
-            <span class="tension-marker" aria-hidden="true">&#9679;</span>
-            <span class="tension-label">Official title:</span>
-            SEO &amp; Data Analyst
-          </p>
         </div>
 
         <div class="exp-body">
@@ -969,9 +896,9 @@
 
           <h4>Selected Campaigns</h4>
           <ul>
+            <li><strong>Space Week</strong> — led digital strategy and guided performance reporting</li>
             <li><strong>Day of Giving</strong> — led digital strategy support and campaign tracking implementation across channels</li>
             <li><strong>Knight Your Ride</strong> — improved user experience, visibility, and conversion strategy</li>
-            <li><strong>Space Week</strong> — led digital strategy and guided performance reporting</li>
           </ul>
 
           <h4>Recognition at UCF</h4>
@@ -1132,7 +1059,7 @@
     <section id="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Work with me.</h2>
 
-      <p>Whether you're navigating a complex digital environment, building something new, or just want to think through a problem — I'd like to hear from you.</p>
+      <p>Whether you have a clear ask or you're still figuring out what kind of help you need — I'd like to hear from you.</p>
 
       <address class="contact-links">
         <a href="mailto:kimhannush@gmail.com">kimhannush@gmail.com</a>
