@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kim Hannush — SEO &amp; Digital Strategy Lead. Organic search strategist and digital systems thinker working at the intersection of institutional visibility, content governance, and emerging search.">
+  <title>Kim Hannush</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── CSS custom properties ── */
+    :root {
+      --color-paper:        #FAF4E4;
+      --color-deep-blue:    #2C6A99;
+      --color-body:         #0F1B2A;
+      --color-secondary:    #3E5C6E;
+      --color-primary:      #4D9BD2;   /* non-text: hover fills, decorative */
+      --color-primary-text: #1870B4;   /* links, section markers — text-safe (4.8:1 on paper) */
+      --color-accent:       #FFC904;   /* focus rings only */
+      --color-chip-bg:      rgba(44, 106, 153, 0.07);
+      --color-rule:         rgba(44, 106, 153, 0.12);
+
+      --nav-w:       220px;
+      --content-max: 680px;
+      --section-pad: 5rem 4rem 4.5rem 4.5rem;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ── */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-body);
+      background: var(--color-paper);
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 9999;
+      padding: 0.5rem 1rem;
+      background: var(--color-primary-text);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-radius: 0 0 3px 3px;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Focus rings: yellow signal + dark halo for contrast on any bg ── */
+    :focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
+    }
+
+    /* ═══════════════════════════════════════════════
+       STRUCTURAL LEFT-GUTTER NAV
+    ═══════════════════════════════════════════════ */
+    #sidenav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      background: var(--color-deep-blue);
+      display: flex;
+      flex-direction: column;
+      padding: 2.75rem 1.5rem 2rem 1.75rem;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    /* Avatar wrapper — replace .sidenav-monogram span with <img class="sidenav-avatar"> to swap in photo */
+    .sidenav-avatar-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(250, 244, 228, 0.08);
+      flex-shrink: 0;
+    }
+
+    .sidenav-avatar-wrap img.sidenav-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sidenav-monogram {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.25rem;
+      color: var(--color-paper);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .sidenav-role {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(250, 244, 228, 0.90);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      line-height: 1.5;
+      margin-bottom: 2.75rem;
+    }
+
+    #sidenav ul {
+      list-style: none;
+      flex: 1;
+    }
+
+    #sidenav ul li + li { margin-top: 0.05rem; }
+
+    #sidenav ul a {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(250, 244, 228, 0.90);
+      text-decoration: none;
+      padding: 0.4rem 0.5rem;
+      border-left: 2px solid transparent;
+      transition: color 0.18s, border-color 0.18s;
+    }
+
+    #sidenav ul a:hover {
+      color: var(--color-paper);
+      border-left-color: var(--color-paper);
+    }
+
+    #sidenav ul a.active {
+      color: var(--color-paper);
+      border-left-color: var(--color-paper);
+    }
+
+    .sidenav-contact {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+      font-style: normal;
+    }
+
+    .sidenav-contact a {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(250, 244, 228, 0.90);
+      text-decoration: none;
+      line-height: 2;
+      word-break: break-all;
+      transition: color 0.18s;
+    }
+
+    .sidenav-contact a:hover { color: var(--color-paper); }
+
+    /* ── Mobile nav toggle ── */
+    .mobile-nav-toggle {
+      display: none;
+    }
+
+    /* ═══════════════════════════════════════════════
+       MAIN OFFSET
+    ═══════════════════════════════════════════════ */
+    main {
+      margin-left: var(--nav-w);
+    }
+
+    /* ═══════════════════════════════════════════════
+       SECTION BASE
+    ═══════════════════════════════════════════════ */
+    main > header,
+    main > section {
+      padding: var(--section-pad);
+      border-bottom: 1px solid var(--color-rule);
+      max-width: calc(var(--content-max) + 9rem);
+    }
+
+    main > header:last-of-type,
+    main > section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* Section label above h2 */
+    .section-label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--color-secondary);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Visually hidden utility */
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ── Type scale ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      color: var(--color-body);
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      line-height: 1.15;
+      color: var(--color-body);
+    }
+
+    h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      color: var(--color-body);
+    }
+
+    h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-secondary);
+      margin-bottom: 0.65rem;
+      margin-top: 1.75rem;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════ */
+    #hero {
+      padding-top: 5.5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    #hero h1 {
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-category {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--color-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      font-weight: 300;
+      color: var(--color-body);
+      max-width: 54ch;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════════ */
+    #about h2 {
+      margin-bottom: 1.1rem;
+    }
+
+    #about > p:first-of-type {
+      color: var(--color-secondary);
+      font-size: 0.95rem;
+      max-width: 60ch;
+      line-height: 1.75;
+    }
+
+    /* The skate park pull-quote */
+    .origin-pull {
+      margin: 3rem 0;
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--color-deep-blue);
+      background: rgba(44, 106, 153, 0.04);
+    }
+
+    .origin-pull p {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--color-body);
+      margin-bottom: 0;
+      max-width: 58ch;
+    }
+
+    #about > p:last-of-type {
+      font-size: 0.95rem;
+      color: var(--color-secondary);
+      max-width: 60ch;
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════════════════════
+       CORE SKILLS
+    ═══════════════════════════════════════════════ */
+    #capabilities h2 { margin-bottom: 1.5rem; }
+
+    .capabilities-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .capabilities-list li {
+      padding: 0.45rem 0.85rem;
+      background: var(--color-chip-bg);
+      border: 1px solid rgba(44, 106, 153, 0.25);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--color-body);
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════════════════════
+       EXPERIENCE
+    ═══════════════════════════════════════════════ */
+    #experience h2 { margin-bottom: 2.75rem; }
+
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    #experience > article {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--color-rule);
+    }
+
+    /* Timeline dot */
+    #experience > article::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-deep-blue);
+      box-shadow: 0 0 0 3px var(--color-paper), 0 0 0 4px var(--color-deep-blue);
+    }
+
+    .exp-header {
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-header h3 {
+      margin-bottom: 0.15rem;
+    }
+
+    .exp-location {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--color-secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-dates,
+    .exp-dates-sep,
+    .exp-dates-end {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--color-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    .exp-title-block {
+      margin: 0.6rem 0 1rem;
+    }
+
+    .exp-title-functional {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-body);
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-body p {
+      font-size: 0.93rem;
+      color: var(--color-secondary);
+      max-width: 62ch;
+      line-height: 1.7;
+    }
+
+    .exp-body ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-body ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.88rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
+      margin-bottom: 0.45rem;
+      max-width: 62ch;
+    }
+
+    .exp-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--color-secondary);
+      font-size: 0.8rem;
+    }
+
+    /* Recognition items */
+    .recognition-item {
+      color: var(--color-body) !important;
+    }
+
+    .recognition-item::before {
+      color: var(--color-deep-blue) !important;
+    }
+
+    /* ═══════════════════════════════════════════════
+       EARLIER EXPERIENCE
+    ═══════════════════════════════════════════════ */
+    #earlier h2 { margin-bottom: 0.85rem; }
+
+    .earlier-intro {
+      font-size: 0.88rem;
+      color: var(--color-secondary);
+      font-style: italic;
+      max-width: 58ch;
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
+    }
+
+    .earlier-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .earlier-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 0.9rem 0;
+      border-top: 1px solid var(--color-rule);
+    }
+
+    .earlier-item:last-child {
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    .earlier-role {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-body);
+      margin-bottom: 0.15rem;
+    }
+
+    .earlier-org {
+      font-size: 0.83rem;
+      color: var(--color-secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .earlier-origin-note {
+      font-size: 0.8rem;
+      color: var(--color-secondary);
+      font-style: italic;
+      line-height: 1.6;
+      max-width: 50ch;
+      margin-bottom: 0;
+    }
+
+    .earlier-dates {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--color-secondary);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-align: right;
+      padding-top: 0.15rem;
+    }
+
+    /* ═══════════════════════════════════════════════
+       EDUCATION
+    ═══════════════════════════════════════════════ */
+    #education h2 { margin-bottom: 1.5rem; }
+
+    .edu-institution h3 {
+      margin-bottom: 1.25rem;
+    }
+
+    .edu-degrees {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .edu-degree-item {
+      padding-left: 1rem;
+      border-left: 2px solid var(--color-rule);
+    }
+
+    .edu-degree-item dt {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--color-body);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-degree-item dd {
+      font-size: 0.83rem;
+      color: var(--color-secondary);
+      margin-left: 0;
+      line-height: 1.6;
+    }
+
+    .edu-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-context {
+      font-style: italic;
+      font-size: 0.85rem;
+      max-width: 55ch;
+      color: var(--color-secondary);
+    }
+
+    /* ═══════════════════════════════════════════════
+       CERTIFICATIONS
+    ═══════════════════════════════════════════════ */
+    #certifications h2 { margin-bottom: 1.25rem; }
+
+    .cert-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cert-list li {
+      padding: 0.45rem 0.85rem;
+      background: var(--color-chip-bg);
+      border: 1px solid rgba(44, 106, 153, 0.25);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--color-body);
+    }
+
+    /* ═══════════════════════════════════════════════
+       CONTACT — colored closing, mirrors sidebar
+    ═══════════════════════════════════════════════ */
+    #contact {
+      background: var(--color-deep-blue);
+      padding: 6rem 4rem 5rem 4.5rem;
+      max-width: none;
+    }
+
+    #contact h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 0.75rem;
+      color: var(--color-paper);
+    }
+
+    #contact > p {
+      font-size: 0.93rem;
+      color: rgba(250, 244, 228, 0.90);
+      max-width: 44ch;
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-style: normal;
+    }
+
+    .contact-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(250, 244, 228, 0.95);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(250, 244, 228, 0.40);
+      padding-bottom: 0.1rem;
+      letter-spacing: 0.03em;
+      transition: border-color 0.18s;
+    }
+
+    .contact-links a:hover {
+      border-bottom-color: var(--color-accent);
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE — MOBILE
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 860px) {
+      :root {
+        --nav-w: 0px;
+        --section-pad: 3rem 1.5rem 2.75rem;
+      }
+
+      /* Nav slides in from left */
+      #sidenav {
+        width: 260px;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+      }
+
+      #sidenav.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+      }
+
+      /* Hamburger button */
+      .mobile-nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 200;
+        width: 40px;
+        height: 40px;
+        padding: 0.55rem;
+        background: var(--color-deep-blue);
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .mobile-nav-toggle span {
+        display: block;
+        height: 2px;
+        background: var(--color-paper);
+        border-radius: 1px;
+        transition: transform 0.2s, opacity 0.2s;
+      }
+
+      .mobile-nav-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .mobile-nav-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-nav-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      main { margin-left: 0; }
+
+      main > header,
+      main > section { max-width: 100%; }
+
+      .earlier-item {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+
+      .earlier-dates { text-align: left; }
+
+      #contact {
+        padding: 4rem 1.5rem 3.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root { --section-pad: 2.5rem 1.25rem 2.25rem; }
+
+      .capabilities-list li,
+      .cert-list li { font-size: 0.875rem; }
+
+      .contact-links { flex-direction: column; gap: 0.75rem; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       REDUCED MOTION
+    ═══════════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════
+       FOCUS STATES
+    ═══════════════════════════════════════════════ */
+    #sidenav ul a:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
+      border-radius: 2px;
+    }
+
+    .contact-links a:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
+      border-radius: 2px;
+    }
+
+    .mobile-nav-toggle:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
+    }
+
+    .skip-link:focus {
+      outline: 3px solid #FFC904;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.55);
+    }
+
+    /* Location label in sidenav */
+    .sidenav-location {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(250, 244, 228, 0.90);
+      line-height: 2;
+      letter-spacing: 0.02em;
+    }
+
+    /* Breathing room between experience entries */
+    #experience > article + article {
+      margin-top: 1.75rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <button class="mobile-nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidenav">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+
+  <!-- ============================================================
+       SITE NAVIGATION
+  ============================================================ -->
+  <nav id="sidenav" aria-label="Site navigation">
+    <div class="sidenav-avatar-wrap" aria-hidden="true">
+      <span class="sidenav-monogram">KH</span>
+    </div>
+    <p class="sidenav-role">Enterprise Search &amp; Digital Strategy</p>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#capabilities">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#earlier">Earlier Work</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Work with me</a></li>
+    </ul>
+
+    <address class="sidenav-contact">
+      <a href="mailto:kimhannush@gmail.com">kimhannush@gmail.com</a>
+      <a href="https://linkedin.com/in/kimhannush" target="_blank" rel="noopener noreferrer">linkedin.com/in/kimhannush</a>
+      <a href="tel:+14075907834">407-590-7834</a>
+      <span class="sidenav-location">Palm Harbor, FL</span>
+    </address>
+  </nav>
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main id="main">
+
+    <!-- ── HERO ── -->
+    <header id="hero" class="section-hero">
+      <h1>Kim Hannush</h1>
+      <p class="hero-category">Enterprise Search &amp; Digital Strategy</p>
+      <p class="hero-tagline">Building the systems that keep large institutions findable.</p>
+    </header>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+
+      <p>I lead enterprise search and digital strategy at the University of Central Florida, where my work is building the content governance frameworks that keep a decentralized university web ecosystem holding together as the rules of search keep changing shape.</p>
+
+      <blockquote class="origin-pull">
+        <p>My first SEO work was for a municipal skate park in Oviedo — two miles from UCF, invisible to the students who would have loved it like I did. I found organic ways to get the right people to it. Two decades later, the puzzle scales but the shape doesn't change.</p>
+      </blockquote>
+
+      <p>Right now that means leading UCF's response to AI-driven discovery — designing how institutions maintain visibility when the audience is no longer landing on their pages first, and how institutional voice stays intact when an AI summary becomes the destination.</p>
+    </section>
+
+    <!-- ── CORE CAPABILITIES ── -->
+    <section id="capabilities" aria-labelledby="capabilities-heading">
+      <h2 id="capabilities-heading">Core Skills</h2>
+
+      <ul class="capabilities-list">
+        <li>Digital Strategy &amp; Governance</li>
+        <li>Content Systems &amp; Information Architecture</li>
+        <li>Enterprise SEO &amp; Organic Growth</li>
+        <li>Analytics, Measurement &amp; Decision Frameworks</li>
+        <li>Cross-Functional Leadership &amp; Facilitation</li>
+        <li>Agile Transformation &amp; Workflow Design</li>
+        <li>AI &amp; Emerging Search Strategy</li>
+      </ul>
+    </section>
+
+    <!-- ── PROFESSIONAL EXPERIENCE ── -->
+    <section id="experience" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Professional Experience</h2>
+
+      <!-- UCF -->
+      <article id="exp-ucf" aria-labelledby="ucf-org-heading">
+        <header class="exp-header">
+          <h3 id="ucf-org-heading">University of Central Florida</h3>
+          <p class="exp-location">Orlando, FL</p>
+          <time class="exp-dates" datetime="2018-05">May 2018</time>
+          <span class="exp-dates-sep" aria-hidden="true">–</span>
+          <span class="exp-dates-end">Present</span>
+        </header>
+
+        <div class="exp-title-block">
+          <p class="exp-title-functional">SEO &amp; Digital Strategy Lead</p>
+        </div>
+
+        <div class="exp-body">
+          <p>Lead organic search strategy and digital visibility across a large-scale university web ecosystem, guiding system-level decisions that shape domain authority, content performance, and user experience across hundreds of sites.</p>
+          <p>Serve as a strategic partner to senior leadership, translating institutional priorities into actionable digital strategy and providing continuity across initiatives during periods of organizational change.</p>
+
+          <h4>Strategic Contributions</h4>
+          <ul>
+            <li>Transitioned from execution to ownership of domain-level strategy, influencing how content, technical SEO, UX and site architecture align through scalable governance and decision-making frameworks</li>
+            <li>Steward the health and performance of the university's web domain, balancing risk, scalability and strategic impact</li>
+            <li>Lead cross-functional collaboration across marketing, development and leadership teams, aligning priorities and driving complex initiatives forward</li>
+            <li>Stepped into leadership capacity during periods of transition, providing direction, stability and decision-making continuity across the Web Communications team</li>
+            <li>Built analytics dashboards that shifted reporting from surface-level metrics to decision-support systems informing prioritization, investment and long-term planning</li>
+            <li>Led migration from Universal Analytics to GA4, providing guidance, education and continuity across the organization</li>
+            <li>Developed scalable, evergreen content strategies aligned with institutional priorities, connecting research, storytelling and recruitment into a more unified content strategy</li>
+            <li>Created next-generation SEO and AI-driven content production models, including workflows and partnership frameworks to support adoption across teams</li>
+            <li>Improved domain authority and organic performance through internal linking, semantic optimization and site structure improvements</li>
+            <li>Supports WCAG alignment and accessibility best practices across the main site and partner initiatives, advising teams on implementation</li>
+          </ul>
+
+          <h4>Selected Campaigns</h4>
+          <ul>
+            <li><strong>Space Week</strong> — led digital strategy and guided performance reporting</li>
+            <li><strong>Day of Giving</strong> — led digital strategy support and campaign tracking implementation across channels</li>
+            <li><strong>Knight Your Ride</strong> — improved user experience, visibility, and conversion strategy</li>
+          </ul>
+
+          <h4>Recognition at UCF</h4>
+          <ul class="recognition-inline">
+            <li class="recognition-item">Employee of the Month — twice; first employee in program history to receive the award multiple times</li>
+            <li class="recognition-item">Consistently rated "Outstanding" across all performance categories</li>
+            <li class="recognition-item">Recognized by senior leadership for strong judgment and initiative in identifying root-cause issues and proactively developing forward-looking solutions</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Harvest Moon -->
+      <article id="exp-harvest" aria-labelledby="harvest-org-heading">
+        <header class="exp-header">
+          <h3 id="harvest-org-heading">Harvest Moon, LLC</h3>
+          <p class="exp-location">Remote</p>
+          <time class="exp-dates" datetime="2019-01">Jan 2019</time>
+          <span class="exp-dates-sep" aria-hidden="true">–</span>
+          <span class="exp-dates-end">Present</span>
+        </header>
+
+        <div class="exp-title-block">
+          <p class="exp-title-functional">Founder &amp; SEO Consultant</p>
+        </div>
+
+        <div class="exp-body">
+          <p>Independent SEO and organic growth consulting practice, partnering with small to mid-sized businesses, national nonprofits, and enterprise organizations to improve search visibility, lead generation, and digital performance.</p>
+          <ul>
+            <li>Advises clients across a range of organizational scales, including a global financial data, media, and technology company (19,000+ employees)</li>
+            <li>Develops tailored strategies across technical SEO, content systems, and local search</li>
+            <li>Delivers measurable improvements in visibility and performance through practical, results-driven execution</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Big Sea -->
+      <article id="exp-bigsea" aria-labelledby="bigsea-org-heading">
+        <header class="exp-header">
+          <h3 id="bigsea-org-heading">Big Sea</h3>
+          <p class="exp-location">St. Petersburg, FL</p>
+          <time class="exp-dates" datetime="2014-02">Feb 2014</time>
+          <span class="exp-dates-sep" aria-hidden="true">–</span>
+          <time class="exp-dates-end" datetime="2018-05">May 2018</time>
+        </header>
+
+        <div class="exp-title-block">
+          <p class="exp-title-functional">Marketing Strategist (SEO Director)</p>
+        </div>
+
+        <div class="exp-body">
+          <p>Led SEO and content strategy for a diverse portfolio of national and local clients across healthcare, nonprofit, and higher education.</p>
+          <ul>
+            <li>Owned end-to-end execution of organic campaigns: strategy through implementation and performance analysis</li>
+            <li>Facilitated client workshops and aligned cross-functional teams to deliver integrated marketing efforts</li>
+            <li>Delivered measurable improvements in traffic, visibility, and conversions through data-driven strategy</li>
+            <li class="recognition-item">Recognized with Big Sea Core Award ("Own It") for demonstrating leadership, accountability, and initiative in driving high-impact work forward</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Sky Strategic -->
+      <article id="exp-sky" aria-labelledby="sky-org-heading">
+        <header class="exp-header">
+          <h3 id="sky-org-heading">Sky Strategic Marketing</h3>
+          <p class="exp-location">Tampa, FL</p>
+          <time class="exp-dates" datetime="2013-01">Jan 2013</time>
+          <span class="exp-dates-sep" aria-hidden="true">–</span>
+          <time class="exp-dates-end" datetime="2014-02">Feb 2014</time>
+        </header>
+
+        <div class="exp-title-block">
+          <p class="exp-title-functional">Director of SEO Operations</p>
+        </div>
+
+        <div class="exp-body">
+          <p>Built processes and frameworks to improve SEO campaign efficiency and performance. Managed the SEO content team responsible for audits, strategy, and reporting.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ── EARLIER EXPERIENCE ── -->
+    <section id="earlier" aria-labelledby="earlier-heading">
+      <h2 id="earlier-heading">Earlier Experience</h2>
+
+      <p class="earlier-intro">These roles are foundational. They are where the practice began — in information systems, in community-facing communication and in the conviction that the right people shouldn't have trouble finding what they need.</p>
+
+      <ul class="earlier-list">
+
+        <li class="earlier-item">
+          <div class="earlier-detail">
+            <p class="earlier-role">Recreation Aide Specialist</p>
+            <p class="earlier-org">City of Oviedo — Municipal Skate Park</p>
+            <p class="earlier-origin-note">Where the SEO practice started: directory listings, manual link outreach to other parks, social media, UGC content strategy and guerrilla marketing at UCF tailgates — two miles from the campus whose web ecosystem I now help run.</p>
+          </div>
+          <time class="earlier-dates" datetime="2006-04/2010-12">Apr 2006 – Dec 2010</time>
+        </li>
+
+        <li class="earlier-item">
+          <div class="earlier-detail">
+            <p class="earlier-role">Legal Assistant</p>
+            <p class="earlier-org">Reeser, Rodnite, Outten &amp; Zdravko, LLC</p>
+          </div>
+          <time class="earlier-dates" datetime="2011-03/2013-03">Mar 2011 – Mar 2013</time>
+        </li>
+
+        <li class="earlier-item">
+          <div class="earlier-detail">
+            <p class="earlier-role">Contracted Transcriptionist</p>
+            <p class="earlier-org">AllState Insurance Co.</p>
+          </div>
+          <time class="earlier-dates" datetime="2008-08/2010-05">Aug 2008 – May 2010</time>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ── EDUCATION ── -->
+    <section id="education" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+
+      <div class="edu-institution">
+        <h3>University of Central Florida</h3>
+
+        <dl class="edu-degrees">
+
+          <div class="edu-degree-item">
+            <dt>M.A. Interdisciplinary Studies</dt>
+            <dd class="edu-status">In Progress</dd>
+            <dd class="edu-context">Examining how large institutions communicate norms — and how those communication systems can evolve to better serve the people they reach. Capstone concept: a practical playbook for modernizing university digital communications, helping institutions move faster, communicate more clearly and stay aligned with cultural and policy shifts without losing structure.</dd>
+          </div>
+
+          <div class="edu-degree-item">
+            <dt>Graduate Certificate, Gender Studies</dt>
+            <dd class="edu-status">4.0 GPA</dd>
+          </div>
+
+          <div class="edu-degree-item">
+            <dt>B.A. Sociology</dt>
+          </div>
+
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <section id="certifications" aria-labelledby="certifications-heading">
+      <h2 id="certifications-heading">Certifications</h2>
+
+      <ul class="cert-list">
+        <li>Certified Scrum Product Owner (CSPO)</li>
+        <li>Certified ScrumMaster (CSM)</li>
+        <li>CITI Responsible Conduct of Research</li>
+      </ul>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Work with me.</h2>
+
+      <p>Whether you have a clear ask or you're still figuring out what kind of help you need — I'd like to hear from you.</p>
+
+      <address class="contact-links">
+        <a href="mailto:kimhannush@gmail.com">kimhannush@gmail.com</a>
+        <a href="https://linkedin.com/in/kimhannush" target="_blank" rel="noopener noreferrer">linkedin.com/in/kimhannush</a>
+      </address>
+    </section>
+
+  </main>
+
+  <script>
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('main > header[id], main > section[id]');
+    const navLinks = document.querySelectorAll('#sidenav ul a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // Mobile nav toggle
+    const toggle = document.querySelector('.mobile-nav-toggle');
+    const nav = document.getElementById('sidenav');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    });
+
+    // Close nav when a link is tapped on mobile
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+      });
+    });
+
+    // Close nav on outside click
+    document.addEventListener('click', e => {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+  </script>
+</body>
+</html>
